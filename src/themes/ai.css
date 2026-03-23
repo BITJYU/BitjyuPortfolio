@@ -1,0 +1,68 @@
+/* =============================================
+   AI Theme — Neural / Cyan
+   ============================================= */
+body[data-theme="ai"] {
+  --accent-primary: #06b6d4;
+  --accent-secondary: #0891b2;
+  --accent-gradient: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  --glass-border: rgba(6, 182, 212, 0.12);
+}
+
+/* Subtle neural dot grid on background */
+body[data-theme="ai"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(6, 182, 212, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gradient text */
+body[data-theme="ai"] .gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section prefix */
+body[data-theme="ai"] .section-title::before {
+  content: 'AI · ';
+  color: var(--accent-primary);
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Cards */
+body[data-theme="ai"] .glass-card {
+  border-color: rgba(6, 182, 212, 0.12);
+}
+
+body[data-theme="ai"] .glass-card:hover {
+  border-color: rgba(6, 182, 212, 0.40);
+  box-shadow:
+    0 0 0 1px rgba(6, 182, 212, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Skills, tags */
+body[data-theme="ai"] .skill-pill,
+body[data-theme="ai"] .project-tag,
+body[data-theme="ai"] .game-tag {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.25);
+}
+
+/* Buttons */
+body[data-theme="ai"] .btn-primary {
+  background: var(--accent-gradient);
+}
+
+body[data-theme="ai"] .btn-ghost:hover {
+  border-color: var(--accent-primary);
+}

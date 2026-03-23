@@ -1,0 +1,258 @@
+/* =============================================
+   ThemeIntro — fullscreen survey overlay
+   ============================================= */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #0a0a1a, #0d0d20, #1a0a2e);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro-overlay--leaving {
+  transform: translateY(-100%);
+}
+
+/* Progress dots */
+.intro-dots {
+  position: absolute;
+  top: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.intro-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.intro-dot--active {
+  background: var(--accent-primary, #6366f1);
+  transform: scale(1.2);
+}
+
+/* Slide wrapper */
+.intro-slide {
+  width: 100%;
+  max-width: 680px;
+  animation: slide-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.intro-slide--center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Question text */
+.intro-question {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.intro-question--ready {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0;
+}
+
+.intro-ready-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---- Q1: Theme cards (3 columns) ---- */
+.intro-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.intro-theme-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    background var(--transition-base),
+    box-shadow var(--transition-base);
+  color: var(--text-primary);
+}
+
+.intro-theme-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.45);
+  background: rgba(99, 102, 241, 0.08);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.15);
+}
+
+/* Per-theme hover accent */
+.intro-theme-card[data-theme-pick="backend"]:hover {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(34, 197, 94, 0.07);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.12);
+}
+
+.intro-theme-card[data-theme-pick="ai"]:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+  background: rgba(6, 182, 212, 0.07);
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.12);
+}
+
+.intro-theme-card[data-theme-pick="game"]:hover {
+  border-color: rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.07);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.12);
+}
+
+.intro-theme-card.is-selected {
+  border-color: rgba(99, 102, 241, 0.6);
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.intro-theme-icon {
+  font-size: 1.8rem;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.intro-theme-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.intro-theme-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ---- Q2: Style cards (2 rows) ---- */
+.intro-style-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.intro-style-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-primary);
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    background var(--transition-base);
+  width: 100%;
+}
+
+.intro-style-card:hover {
+  transform: translateX(6px);
+  border-color: rgba(99, 102, 241, 0.45);
+  background: rgba(99, 102, 241, 0.07);
+}
+
+.intro-style-card.is-selected {
+  border-color: rgba(99, 102, 241, 0.6);
+  background: rgba(99, 102, 241, 0.10);
+}
+
+.intro-style-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.intro-style-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.intro-style-label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.intro-style-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ---- Q3: Launch button ---- */
+.intro-launch-btn {
+  padding: 1rem 3.5rem;
+  background: var(--accent-gradient, linear-gradient(135deg, #6366f1, #8b5cf6));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
+}
+
+.intro-launch-btn:hover {
+  opacity: 0.88;
+  transform: scale(1.05);
+}
+
+.intro-launch-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .intro-theme-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-theme-card {
+    flex-direction: row;
+    padding: var(--space-md) var(--space-lg);
+    justify-content: flex-start;
+    gap: var(--space-md);
+  }
+
+  .intro-theme-desc {
+    text-align: left;
+  }
+}

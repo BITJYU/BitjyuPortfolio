@@ -1,0 +1,29 @@
+/* =============================================
+   Formal Style — Reduced animations
+   ============================================= */
+body[data-style="formal"] {
+  --transition-fast: 60ms ease;
+  --transition-base: 80ms ease;
+  --transition-slow: 120ms ease;
+}
+
+body[data-style="formal"] .reveal {
+  transition-duration: 0.18s !important;
+}
+
+/* Disable orb float animation */
+body[data-style="formal"] .hero-orb {
+  animation: none !important;
+}
+
+/* Disable hero entrance animation (instant show) */
+body[data-style="formal"] .hero-content {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Faster card hover */
+body[data-style="formal"] .glass-card {
+  transition-duration: 80ms !important;
+}

@@ -1,0 +1,69 @@
+/* =============================================
+   Game Theme — Amber / Achievement
+   ============================================= */
+body[data-theme="game"] {
+  --accent-primary: #f59e0b;
+  --accent-secondary: #d97706;
+  --accent-gradient: linear-gradient(135deg, #f59e0b, #ef4444);
+  --glass-border: rgba(245, 158, 11, 0.12);
+}
+
+/* Chapter prefix on section titles */
+body[data-theme="game"] .section-title::before {
+  content: 'CHAPTER · ';
+  color: var(--accent-primary);
+  font-size: 0.55em;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Gradient text */
+body[data-theme="game"] .gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cards */
+body[data-theme="game"] .glass-card {
+  border-color: rgba(245, 158, 11, 0.12);
+}
+
+body[data-theme="game"] .glass-card:hover {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Skills, tags */
+body[data-theme="game"] .skill-pill,
+body[data-theme="game"] .project-tag,
+body[data-theme="game"] .game-tag {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+/* Buttons */
+body[data-theme="game"] .btn-primary {
+  background: var(--accent-gradient);
+}
+
+body[data-theme="game"] .btn-ghost:hover {
+  border-color: var(--accent-primary);
+}
+
+/* Game badge live color */
+body[data-theme="game"] .game-badge--live {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+/* Top padding to accommodate GameHUD bar */
+body[data-theme="game"] main {
+  padding-top: 40px;
+}

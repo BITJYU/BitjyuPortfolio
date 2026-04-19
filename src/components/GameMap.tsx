@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Home, User, Code2, Briefcase, FolderGit2, Gamepad2, Mail, Map, Check } from 'lucide-react'
+import { Home, User, Code2, Briefcase, FolderGit2, Gamepad2, Mail, Map, Check, X } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import './GameMap.css'
 
@@ -10,7 +10,7 @@ interface Chapter {
 }
 
 const CHAPTERS: Chapter[] = [
-  { id: 'hero',       label: '시작',        icon: <Home size={16} /> },
+  { id: 'intro',      label: '시작',        icon: <Home size={16} /> },
   { id: 'about',      label: 'About',      icon: <User size={16} /> },
   { id: 'skills',     label: 'Skills',     icon: <Code2 size={16} /> },
   { id: 'experience', label: 'Experience', icon: <Briefcase size={16} /> },

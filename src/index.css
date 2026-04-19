@@ -45,6 +45,9 @@
   --navbar-height: 64px;
 
   /* Typography */
+  --font-small-copy: 'KoPubWorldDotum', 'KoPub Dotum', 'KoPubDotum', 'KoPub돋움체',
+    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.6;
   font-weight: 400;
@@ -173,6 +176,25 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Small explanatory copy */
+:where(
+  .about-text p,
+  .proj-subtitle,
+  .project-description,
+  .proj-description,
+  .game-description,
+  .games-subtitle,
+  .timeline-desc li,
+  .global-desc,
+  .lang-score,
+  .contact-subtitle,
+  .contact-description,
+  .footer-copy,
+  .intro-chat-line p
+) {
+  font-family: var(--font-small-copy);
 }
 
 /* Buttons */

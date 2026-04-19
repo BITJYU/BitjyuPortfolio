@@ -80,7 +80,7 @@ function Hero() {
 
       <div className="hero-content">
         <p className="hero-greeting">안녕하세요, 저는</p>
-        <h1 className="hero-name gradient-text">[Your Name]</h1>
+        <h1 className="hero-name gradient-text">Soomin Jo</h1>
         <div className="hero-title" aria-label={TITLES[titleIndex]}>
           <span className="hero-title-text">{displayed}</span>
           <span className="hero-cursor" aria-hidden="true">|</span>

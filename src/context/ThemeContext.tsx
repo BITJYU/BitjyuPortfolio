@@ -24,7 +24,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [style, setStyleState] = useState<Style | null>(() => {
     return (sessionStorage.getItem('pf-style') as Style) ?? null
   })
-  // isReady: true if both theme+style are set AND user clicked "네."
+  // isReady: true if both theme+style are set AND user entered the portfolio.
   const [isReady, setIsReady] = useState(() => {
     return !!(sessionStorage.getItem('pf-theme') && sessionStorage.getItem('pf-style'))
   })
@@ -48,7 +48,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setTheme = useCallback((t: Theme) => setThemeState(t), [])
   const setStyle = useCallback((s: Style) => setStyleState(s), [])
 
-  const launch = useCallback(() => setIsReady(true), [])
+  const launch = useCallback(() => {
+    setIsReady(true)
+  }, [])
 
   const resetTheme = useCallback(() => {
     sessionStorage.removeItem('pf-theme')

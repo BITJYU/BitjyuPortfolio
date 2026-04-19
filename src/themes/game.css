@@ -62,8 +62,3 @@ body[data-theme="game"] .game-badge--live {
   border-color: rgba(245, 158, 11, 0.35);
   color: #fbbf24;
 }
-
-/* Top padding to accommodate GameHUD bar */
-body[data-theme="game"] main {
-  padding-top: 40px;
-}

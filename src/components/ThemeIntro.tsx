@@ -1,113 +1,220 @@
-import { useState } from 'react'
-import type { ReactNode } from 'react'
-import { Terminal, Bot, Gamepad2, Zap, PartyPopper } from 'lucide-react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import type { FormEvent, ReactNode } from 'react'
+import { Bot, Code2, Gamepad2, Send, Terminal } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
-import type { Theme, Style } from '../context/ThemeContext'
+import type { Theme } from '../context/ThemeContext'
 import './ThemeIntro.css'
 
-const THEME_OPTIONS: { value: Theme; icon: ReactNode; label: string; desc: string }[] = [
-  { value: 'backend', icon: <Terminal size={28} />, label: 'Backend', desc: '서버 · 인프라 · DB' },
-  { value: 'ai',      icon: <Bot size={28} />,      label: 'AI',      desc: 'ML · LLM · 파인튜닝' },
-  { value: 'game',    icon: <Gamepad2 size={28} />, label: 'Game',    desc: '게임 개발 · AI 게임' },
+interface PresetPrompt {
+  id: string
+  label: string
+  theme: Theme
+  icon: ReactNode
+  reply: string
+}
+
+interface ChatLine {
+  id: string
+  speaker: 'heliades' | 'visitor'
+  text: string
+}
+
+const PRESET_PROMPTS: PresetPrompt[] = [
+  {
+    id: 'backend',
+    label: 'Frontend & Backend',
+    theme: 'backend',
+    icon: <Terminal size={18} />,
+    reply:
+      '헬리아데스 text mode: 프론트엔드와 백엔드 관점으로 안내합니다. Mastodon 운영/튜닝, API 설계, 데이터 흐름, 배포 가능한 구조를 중심으로 아래 포트폴리오를 확인해보세요.',
+  },
+  {
+    id: 'ai',
+    label: 'AI',
+    theme: 'ai',
+    icon: <Bot size={18} />,
+    reply:
+      '헬리아데스 text mode: AI 관점으로 안내합니다. 모델 활용, 자동화 흐름, LLM 기반 인터랙션을 중심으로 살펴보면 좋습니다.',
+  },
+  {
+    id: 'game',
+    label: 'Game',
+    theme: 'game',
+    icon: <Gamepad2 size={18} />,
+    reply:
+      '헬리아데스 text mode: 게임 개발 관점으로 안내합니다. 섹션을 맵처럼 이동하며 기술 스택과 프로젝트를 탐색할 수 있습니다.',
+  },
 ]
 
-const STYLE_OPTIONS: { value: Style; icon: ReactNode; label: string; desc: string }[] = [
-  { value: 'formal', icon: <Zap size={22} />,         label: '빠르고 딱딱하게',        desc: '핵심 정보 중심, 간결하게' },
-  { value: 'fun',    icon: <PartyPopper size={22} />, label: '합법적으로 시간 때우기', desc: '인터랙티브 풀 경험' },
-]
+const DEFAULT_REPLY =
+  '헬리아데스 text mode: 지금은 고정 응답 모드입니다. 입력 내용은 서버로 전송되지 않고, 준비된 안내 문장만 출력됩니다.'
 
-const DOTS = ['Q1', 'Q2', 'Q3']
+const TITLES = ['Frontend & Backend Developer', 'AI Engineer', 'ML Model Builder']
+
+function useTypewriter(titles: string[]) {
+  const [display, setDisplay] = useState('')
+  const idxRef      = useRef(0)
+  const deletingRef = useRef(false)
+  const timerRef    = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    function tick() {
+      const title = titles[idxRef.current]
+      if (deletingRef.current) {
+        setDisplay((prev) => prev.slice(0, -1))
+        timerRef.current = setTimeout(tick, display.length <= 1 ? 420 : 40)
+      } else {
+        const next = title.slice(0, display.length + 1)
+        setDisplay(next)
+        if (next === title) {
+          timerRef.current = setTimeout(() => {
+            deletingRef.current = true
+            tick()
+          }, 1800)
+          return
+        }
+        timerRef.current = setTimeout(tick, 80)
+      }
+
+      if (deletingRef.current && display.length === 0) {
+        idxRef.current = (idxRef.current + 1) % titles.length
+        deletingRef.current = false
+      }
+    }
+    timerRef.current = setTimeout(tick, 120)
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [display])
+
+  return display
+}
 
 function ThemeIntro() {
-  const { theme, style, isReady, setTheme, setStyle, launch } = useTheme()
-  const [slide, setSlide] = useState(0)
-  const [leaving, setLeaving] = useState(false)   // slide-up exit animation
+  const { theme, setTheme, setStyle, launch } = useTheme()
+  const typedTitle = useTypewriter(TITLES)
+  const [input, setInput] = useState('')
+  const [selectedPrompt, setSelectedPrompt] = useState<PresetPrompt>(() => {
+    return PRESET_PROMPTS.find((prompt) => prompt.theme === theme) ?? PRESET_PROMPTS[1]
+  })
+  const [chatLines, setChatLines] = useState<ChatLine[]>([
+    {
+      id: 'hello',
+      speaker: 'heliades',
+      text:
+        '안녕하세요. 저는 Heliades입니다. 더욱 자세한 포트폴리오로 안내해드리겠습니다.',
+    },
+  ])
 
-  // If already configured from a previous session, skip
-  if (isReady) return null
+  const latestReply = useMemo(() => chatLines[chatLines.length - 1]?.text ?? DEFAULT_REPLY, [chatLines])
 
-  const goNext = () => setSlide((s) => s + 1)
-
-  const handleTheme = (t: Theme) => {
-    setTheme(t)
-    goNext()
+  const scrollToAbout = () => {
+    window.requestAnimationFrame(() => {
+      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+    })
   }
 
-  const handleStyle = (s: Style) => {
-    setStyle(s)
-    goNext()
+  const pushReply = (prompt: PresetPrompt) => {
+    setSelectedPrompt(prompt)
+    setTheme(prompt.theme)
+    setChatLines((prev) => [
+      ...prev,
+      { id: `${prompt.id}-ask-${prev.length}`, speaker: 'visitor', text: prompt.label },
+      { id: `${prompt.id}-reply-${prev.length}`, speaker: 'heliades', text: prompt.reply },
+    ])
+  }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const text = input.trim()
+    if (!text) return
+
+    setInput('')
+    setChatLines((prev) => [
+      ...prev,
+      { id: `custom-ask-${prev.length}`, speaker: 'visitor', text },
+      { id: `custom-reply-${prev.length}`, speaker: 'heliades', text: DEFAULT_REPLY },
+    ])
   }
 
   const handleLaunch = () => {
-    setLeaving(true)
-    setTimeout(() => launch(), 500)
+    setTheme(selectedPrompt.theme)
+    setStyle('formal')
+    launch()
+    scrollToAbout()
   }
 
   return (
-    <div className={`intro-overlay${leaving ? ' intro-overlay--leaving' : ''}`} aria-modal="true" role="dialog">
-      {/* Progress dots */}
-      {slide > 0 && (
-        <div className="intro-dots" aria-label={`Step ${slide + 1} of 3`}>
-          {DOTS.map((_, i) => (
-            <span key={i} className={`intro-dot${i <= slide ? ' intro-dot--active' : ''}`} />
+    <section id="intro" className="intro-overlay" data-intro-theme={selectedPrompt.theme} aria-label="Heliades intro">
+      <div className="intro-shell">
+        <main className="intro-main">
+          <section className="intro-hero">
+            <p className="intro-greeting">안녕하세요. 저는</p>
+            <h1 className="intro-name gradient-text">Soomin Jo</h1>
+            <div className="intro-title" aria-label={TITLES.join(', ')}>
+              <span className="intro-title-text">{typedTitle}</span>
+              <span className="intro-title-cursor" aria-hidden="true">|</span>
+            </div>
+            <p className="intro-copy">
+              IT &amp; 소프트웨어 전공 개발자로 React, 백엔드 시스템과 AI 모델을 설계하고 배포합니다.
+            </p>
+            <div className="intro-cta">
+              <button className="btn-primary" type="button" onClick={handleLaunch}>
+                About Me
+              </button>
+              <a href="#contact" className="btn-ghost">Contact</a>
+            </div>
+          </section>
+
+          <section className="intro-console" aria-label="헬리아데스 text mode">
+            <div className="intro-console-head">
+              <div>
+                <span className="intro-status-dot" aria-hidden="true" />
+                <span className="intro-console-title">Heliades text mode</span>
+              </div>
+              <span className="intro-console-state">fixed reply</span>
+            </div>
+
+            <div className="intro-chat-log" aria-live="polite">
+              {chatLines.slice(-4).map((line) => (
+                <div key={line.id} className={`intro-chat-line intro-chat-line--${line.speaker}`}>
+                  <span className="intro-chat-speaker">{line.speaker === 'heliades' ? 'H' : 'You'}</span>
+                  <p>{line.text}</p>
+                </div>
+              ))}
+            </div>
+
+            <form className="intro-prompt" onSubmit={handleSubmit}>
+              <Code2 size={18} aria-hidden="true" />
+              <input
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                placeholder="헬리아데스에게 물어보기"
+                aria-label="헬리아데스에게 물어보기"
+              />
+              <button type="submit" aria-label="고정 응답 출력">
+                <Send size={18} />
+              </button>
+            </form>
+          </section>
+        </main>
+
+        <div className="intro-preset-grid" aria-label="추천 프롬프트">
+          {PRESET_PROMPTS.map((prompt) => (
+            <button
+              key={prompt.id}
+              className={`intro-preset-card${selectedPrompt.id === prompt.id ? ' is-selected' : ''}`}
+              type="button"
+              onClick={() => pushReply(prompt)}
+            >
+              <span className="intro-preset-icon">{prompt.icon}</span>
+              <span>{prompt.label}</span>
+            </button>
           ))}
         </div>
-      )}
 
-      {/* Slide 0: Q1 — Theme */}
-      {slide === 0 && (
-        <div className="intro-slide">
-          <h1 className="intro-question">어느 분야를 중점적으로<br />보고 싶으신가요?</h1>
-          <div className="intro-theme-grid">
-            {THEME_OPTIONS.map((opt) => (
-              <button
-                key={opt.value}
-                className={`intro-theme-card${theme === opt.value ? ' is-selected' : ''}`}
-                onClick={() => handleTheme(opt.value)}
-                data-theme-pick={opt.value}
-              >
-                <span className="intro-theme-icon">{opt.icon}</span>
-                <span className="intro-theme-label">{opt.label}</span>
-                <span className="intro-theme-desc">{opt.desc}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Slide 1: Q2 — Style */}
-      {slide === 1 && (
-        <div className="intro-slide">
-          <h2 className="intro-question">어떤 스타일로<br />보시겠어요?</h2>
-          <div className="intro-style-list">
-            {STYLE_OPTIONS.map((opt) => (
-              <button
-                key={opt.value}
-                className={`intro-style-card${style === opt.value ? ' is-selected' : ''}`}
-                onClick={() => handleStyle(opt.value)}
-              >
-                <span className="intro-style-icon">{opt.icon}</span>
-                <div className="intro-style-text">
-                  <span className="intro-style-label">{opt.label}</span>
-                  <span className="intro-style-desc">{opt.desc}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Slide 2: Q3 — Launch */}
-      {slide === 2 && (
-        <div className="intro-slide intro-slide--center">
-          <p className="intro-ready-sub">설정 완료</p>
-          <h2 className="intro-question intro-question--ready">준비되셨나요?</h2>
-          <button className="intro-launch-btn" onClick={handleLaunch}>
-            네.
-          </button>
-        </div>
-      )}
-    </div>
+        <p className="intro-static-note">{latestReply}</p>
+      </div>
+    </section>
   )
 }
 

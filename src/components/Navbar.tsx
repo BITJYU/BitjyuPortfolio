@@ -7,8 +7,9 @@ const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Games', href: '#games' },
+  { label: 'AI', href: '#ai' },
+  { label: 'Frontend', href: '#frontend' },
+  { label: 'Backend', href: '#backend' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -30,8 +31,8 @@ function Navbar() {
   return (
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar-inner">
-        <a href="#hero" className="navbar-logo gradient-text">
-          [Your Name]
+        <a href="#intro" className="navbar-logo gradient-text">
+          Soomin Jo
         </a>
 
         {/* Desktop links */}

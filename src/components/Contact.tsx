@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Github, Mail, Linkedin } from 'lucide-react'
+import { BriefcaseBusiness, FolderGit2, Mail } from 'lucide-react'
 import './Contact.css'
 
 interface ContactItem {
@@ -11,7 +11,7 @@ interface ContactItem {
 
 const CONTACTS: ContactItem[] = [
   {
-    icon: <Github size={28} />,
+    icon: <FolderGit2 size={28} />,
     label: 'GitHub',
     description: '프로젝트 코드 및 오픈소스 기여',
     href: '#',
@@ -23,7 +23,7 @@ const CONTACTS: ContactItem[] = [
     href: 'mailto:your.email@example.com',
   },
   {
-    icon: <Linkedin size={28} />,
+    icon: <BriefcaseBusiness size={28} />,
     label: 'LinkedIn',
     description: '경력 및 네트워크',
     href: '#',

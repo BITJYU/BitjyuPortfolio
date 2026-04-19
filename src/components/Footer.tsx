@@ -5,7 +5,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <p className="footer-copy">
-          © {new Date().getFullYear()} [Your Name]. All rights reserved.
+          © {new Date().getFullYear()} Soomin Jo. All rights reserved.
         </p>
       </div>
     </footer>

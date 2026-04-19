@@ -1,41 +1,106 @@
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-lg);
+.projects-sub {
+  margin-bottom: var(--space-3xl);
 }
 
-.project-card {
+.proj-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: calc(-1 * var(--space-lg));
+  margin-bottom: var(--space-xl);
+  font-size: 0.95rem;
+}
+
+.projects-sub-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Featured card */
+.proj-featured-card {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+.proj-video-wrap {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: #000;
+}
+
+.proj-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.proj-card-body {
   padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
 }
 
-.project-body {
+.proj-card-body--fill {
   flex: 1;
 }
 
-.project-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-primary);
+.proj-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
   margin-bottom: var(--space-md);
 }
 
-.project-description {
+/* Badges */
+.proj-badge {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.proj-badge--ai {
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  color: rgba(6, 182, 212, 0.9);
+}
+
+.proj-badge--fe {
+  background: rgba(52, 211, 153, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: rgba(52, 211, 153, 0.9);
+}
+
+.proj-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.proj-description {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-md);
 }
 
-.project-tags {
+.proj-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
   margin-bottom: var(--space-lg);
 }
 
-.project-tag {
+.proj-tag {
   padding: 3px 10px;
   background: rgba(139, 92, 246, 0.15);
   border: 1px solid rgba(139, 92, 246, 0.25);
@@ -44,13 +109,26 @@
   color: var(--text-secondary);
 }
 
-.project-links {
+.proj-links {
   display: flex;
   gap: var(--space-sm);
   margin-top: auto;
 }
 
-.project-btn {
+.proj-btn {
   font-size: 0.85rem;
   padding: 0.5rem 1.2rem;
+}
+
+/* Regular card grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.proj-card {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
 }

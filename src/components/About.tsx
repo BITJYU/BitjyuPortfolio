@@ -2,8 +2,9 @@ import './About.css'
 
 const INFO_ITEMS = [
   { label: '전공', value: 'IT & AI' },
-  { label: '역할', value: 'Backend Developer / AI Engineer' },
-  { label: '관심사', value: 'LLM, 강화학습, 백엔드 시스템' },
+  { label: '역할', value: 'Backend / Infra-oriented Developer' },
+  { label: 'AI 툴', value: 'Claude · Cursor · Copilot · Codex' },
+  { label: '관심사', value: '운영 자동화, 백엔드 시스템, LLM 도구화' },
   { label: '위치', value: 'Korea' },
 ]
 
@@ -23,16 +24,18 @@ function About() {
             style={{ '--delay': '0s' } as React.CSSProperties}
           >
             <p>
-              안녕하세요! IT &amp; AI 전공 개발자입니다. 백엔드 시스템 설계부터
-              AI 모델 파인튜닝, 클라우드 배포까지 폭넓은 스택을 다룹니다.
+              안녕하세요. 구현 중심의 문제 해결에서 출발해 운영과 설계까지
+              시야를 넓혀가고 있는 IT &amp; AI 전공 개발자입니다.
             </p>
             <p>
-              Node.js / Python 기반 서버 개발과 함께 PyTorch, LoRA Fine-tuning,
-              Hugging Face를 활용한 LLM 모델 실험 및 배포 경험이 있습니다.
+              Docker Compose 기반 서비스 분리, Redis 역할 분리, PostgreSQL 운영
+              포인트, Sidekiq 큐 구조처럼 실제 서비스가 안정적으로 움직이는
+              조건을 추적하고 개선하는 작업에 관심이 많습니다.
             </p>
             <p>
-              새로운 기술을 탐구하고 실제 프로젝트에 적용하는 것을 즐깁니다.
-              게임 개발과 AI를 결합한 실험적인 프로젝트에도 관심이 많습니다.
+              에러를 넘기지 않고 원인을 확인한 뒤 우회, 검증, 재시도를 반복하는
+              편입니다. 지금은 잘 고치는 개발자에서 왜 그렇게 설계해야 하는지
+              설명할 수 있는 개발자로 확장하는 중입니다.
             </p>
           </div>
 

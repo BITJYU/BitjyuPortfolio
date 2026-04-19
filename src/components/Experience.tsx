@@ -22,34 +22,41 @@ interface LanguageItem {
 
 const WORK: WorkItem[] = [
   {
-    role: '[직책 / Role]',
-    company: '[회사명 / Company]',
-    period: '2024.01 – 현재',
+    role: 'Mastodon Operations & Tuning',
+    company: 'Self-hosted Infrastructure',
+    period: '운영 / 튜닝',
     description: [
-      '주요 업무 내용을 입력하세요.',
-      '사용한 기술 스택 및 성과를 입력하세요.',
+      'Mastodon은 ActivityPub 기반의 연합형 소셜 네트워크 서버이며, 자체 인스턴스를 운영하며 구조와 병목을 분석했습니다.',
+      'Docker Compose 기반으로 web, streaming, sidekiq 역할을 분리하고 서비스별 책임 범위를 파악했습니다.',
+      'Redis DB를 cache, sidekiq, default 용도로 나누어 큐와 캐시 역할이 섞이지 않도록 운영 구조를 정리했습니다.',
+      'PostgreSQL WAL, autovacuum, checkpoint 같은 운영 포인트를 확인하며 부하와 장애 가능성을 추적했습니다.',
+      'Sidekiq queue와 scheduler 보호 관점에서 작업량이 몰릴 때 어떤 큐가 병목이 되는지 검토했습니다.',
     ],
   },
   {
-    role: '[인턴십 / Internship]',
-    company: '[회사명 / Company]',
-    period: '2023.06 – 2023.12',
+    role: 'Automation Rule Design',
+    company: 'Google Sheets / Apps Script',
+    period: '자동화 사례',
     description: [
-      '인턴십 주요 업무를 입력하세요.',
-      '기여한 내용을 입력하세요.',
+      'Google Sheets 데이터를 기반으로 조건 파싱, 태그 매칭, 우선순위 판정 로직을 설계했습니다.',
+      '반복 입력을 줄이기 위해 Apps Script로 미니 룰 엔진 형태의 자동화 흐름을 구성했습니다.',
+      '상태 잔존, 데이터 정규화, 구조 분리 문제를 개선 대상으로 파악하고 설계 보완 방향을 정리했습니다.',
     ],
   },
 ]
 
 const CERTS: CertItem[] = [
-  { name: '[자격증 이름]', issuer: '[발급 기관]', year: '2024' },
-  { name: '[자격증 이름]', issuer: '[발급 기관]', year: '2023' },
+  { name: 'Operations Debugging', issuer: 'Docker · Redis · PostgreSQL', year: 'Strength' },
+  { name: 'Automation Logic', issuer: 'Apps Script · Rule Design', year: 'Focus' },
 ]
 
 const LANGUAGES: LanguageItem[] = [
   { language: 'Korean', level: 'Native', score: undefined },
-  { language: 'English', level: 'Professional', score: '[TOEIC / IELTS score]' },
-  { language: '[기타 언어]', level: '[수준]', score: undefined },
+  {
+    language: 'English',
+    level: 'Technical Reading',
+    score: 'TOEIC: 800+\nDocs / Error logs / API references\nSan Diego State University exchange student',
+  },
 ]
 
 function Experience() {
@@ -57,7 +64,7 @@ function Experience() {
     <section id="experience" className="section experience">
       <div className="section-inner">
         <h2 className="section-title">
-          Experience &amp; <span className="gradient-text">Credentials</span>
+          Experience &amp; <span className="gradient-text">Strengths</span>
         </h2>
 
         <div className="experience-layout">
@@ -68,7 +75,7 @@ function Experience() {
             style={{ '--delay': '0s' } as React.CSSProperties}
           >
             <h3 className="experience-col-title">
-              <span className="experience-col-icon"><Briefcase size={16} /></span> Work Experience
+              <span className="experience-col-icon"><Briefcase size={16} /></span> Operational Experience
             </h3>
             <div className="timeline">
               {WORK.map((item) => (
@@ -100,7 +107,7 @@ function Experience() {
               style={{ '--delay': '0.12s' } as React.CSSProperties}
             >
               <h3 className="experience-col-title">
-                <span className="experience-col-icon"><Award size={16} /></span> Certifications
+                <span className="experience-col-icon"><Award size={16} /></span> Strengths
               </h3>
               <div className="certs-list">
                 {CERTS.map((cert) => (
@@ -125,8 +132,8 @@ function Experience() {
                 <span className="experience-col-icon"><Globe size={16} /></span> Global Communication
               </h3>
               <p className="global-desc">
-                글로벌 팀 환경에서의 협업 및 커뮤니케이션 경험을 보유하고 있습니다.
-                영어로 기술 문서 작성, 코드 리뷰, 미팅 진행이 가능합니다.
+                기술 문서, 에러 로그, API 레퍼런스를 읽고 문제 원인을 좁혀가는 데 익숙합니다.
+                필요한 내용을 한국어로 구조화해 기록하고 재현 가능한 해결 절차로 정리합니다.
               </p>
               <div className="languages-list">
                 {LANGUAGES.map((lang) => (

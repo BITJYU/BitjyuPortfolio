@@ -12,6 +12,30 @@ dist
 dist-ssr
 *.local
 
+# Local AI assistant notes
+CLAUDE.md
+.claude/
+.codex/
+.codex-*/
+
+# Temporary and scratch files
+tmp/
+temp/
+.tmp/
+tmp_*/
+tmp-*/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Test and report output
+coverage/
+test-results/
+playwright-report/
+.nyc_output/
+.vitest/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -19,8 +19,8 @@ const CONTACTS: ContactItem[] = [
   {
     icon: <Mail size={28} />,
     label: 'Email',
-    description: 'your.email@example.com',
-    href: 'mailto:your.email@example.com',
+    description: 'whtnals0417@gmail.com',
+    href: 'mailto:whtnals0417@gmail.com',
   },
   {
     icon: <BriefcaseBusiness size={28} />,

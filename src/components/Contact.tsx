@@ -14,7 +14,7 @@ const CONTACTS: ContactItem[] = [
     icon: <FolderGit2 size={28} />,
     label: 'GitHub',
     description: '프로젝트 코드 및 오픈소스 기여',
-    href: '#',
+    href: 'https://github.com/BITJYU',
   },
   {
     icon: <Mail size={28} />,

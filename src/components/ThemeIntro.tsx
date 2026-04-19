@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
-import { Bot, Code2, Gamepad2, Send, Terminal } from 'lucide-react'
+import { Bot, Code2, Send, Terminal } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import type { Theme } from '../context/ThemeContext'
 import './ThemeIntro.css'
@@ -21,12 +21,20 @@ interface ChatLine {
 
 const PRESET_PROMPTS: PresetPrompt[] = [
   {
+    id: 'frontend',
+    label: 'Frontend',
+    theme: 'game',
+    icon: <Code2 size={18} />,
+    reply:
+      '프론트엔드 관점으로 안내합니다. React/Vite 기반 인터랙션, 세계관 사이트, 배포된 웹 페이지와 사용자 경험을 중심으로 아래 포트폴리오를 확인해보세요.',
+  },
+  {
     id: 'backend',
-    label: 'Frontend & Backend',
+    label: 'Backend',
     theme: 'backend',
     icon: <Terminal size={18} />,
     reply:
-      '헬리아데스 text mode: 프론트엔드와 백엔드 관점으로 안내합니다. Mastodon 운영/튜닝, API 설계, 데이터 흐름, 배포 가능한 구조를 중심으로 아래 포트폴리오를 확인해보세요.',
+      '백엔드 관점으로 안내합니다. Mastodon 운영/튜닝, Docker Compose 기반 서비스 분리, 데이터 흐름, 배포 가능한 구조를 중심으로 아래 포트폴리오를 확인해보세요.',
   },
   {
     id: 'ai',
@@ -34,20 +42,12 @@ const PRESET_PROMPTS: PresetPrompt[] = [
     theme: 'ai',
     icon: <Bot size={18} />,
     reply:
-      '헬리아데스 text mode: AI 관점으로 안내합니다. 모델 활용, 자동화 흐름, LLM 기반 인터랙션을 중심으로 살펴보면 좋습니다.',
-  },
-  {
-    id: 'game',
-    label: 'Game',
-    theme: 'game',
-    icon: <Gamepad2 size={18} />,
-    reply:
-      '헬리아데스 text mode: 게임 개발 관점으로 안내합니다. 섹션을 맵처럼 이동하며 기술 스택과 프로젝트를 탐색할 수 있습니다.',
+      'AI 관점으로 안내합니다. 모델 활용, 자동화 흐름, LLM 기반 인터랙션을 중심으로 살펴보면 좋습니다.',
   },
 ]
 
 const DEFAULT_REPLY =
-  '헬리아데스 text mode: 지금은 고정 응답 모드입니다. 입력 내용은 서버로 전송되지 않고, 준비된 안내 문장만 출력됩니다.'
+  '지금은 고정 응답 모드입니다. 입력 내용은 서버로 전송되지 않고, 준비된 안내 문장만 출력됩니다.'
 
 const TITLES = ['Frontend & Backend Developer', 'AI Engineer', 'ML Model Builder']
 
@@ -101,7 +101,7 @@ function ThemeIntro() {
       id: 'hello',
       speaker: 'heliades',
       text:
-        '안녕하세요. 저는 Heliades입니다. 더욱 자세한 포트폴리오로 안내해드리겠습니다.',
+        '안녕하세요. 신입 주니어 개발자 조수민 입니다! 더욱 자세한 포트폴리오로 안내해드리겠습니다.',
     },
   ])
 
@@ -165,13 +165,11 @@ function ThemeIntro() {
             </div>
           </section>
 
-          <section className="intro-console" aria-label="헬리아데스 text mode">
+          <section className="intro-console" aria-label="포트폴리오 안내">
             <div className="intro-console-head">
               <div>
                 <span className="intro-status-dot" aria-hidden="true" />
-                <span className="intro-console-title">Heliades text mode</span>
               </div>
-              <span className="intro-console-state">fixed reply</span>
             </div>
 
             <div className="intro-chat-log" aria-live="polite">
@@ -188,8 +186,8 @@ function ThemeIntro() {
               <input
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder="헬리아데스에게 물어보기"
-                aria-label="헬리아데스에게 물어보기"
+                placeholder="궁금한 점을 물어보세요"
+                aria-label="궁금한 점을 물어보세요"
               />
               <button type="submit" aria-label="고정 응답 출력">
                 <Send size={18} />

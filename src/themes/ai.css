@@ -27,6 +27,12 @@ body[data-theme="ai"] .gradient-text {
   background-clip: text;
 }
 
+/* Navbar logo */
+body[data-theme="ai"] .navbar-logo::before {
+  content: '>_ ';
+  font-family: 'Courier New', Courier, monospace;
+}
+
 /* Section prefix */
 body[data-theme="ai"] .section-title::before {
   content: 'AI · ';

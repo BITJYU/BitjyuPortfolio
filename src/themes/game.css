@@ -27,6 +27,12 @@ body[data-theme="game"] .gradient-text {
   background-clip: text;
 }
 
+/* Navbar logo */
+body[data-theme="game"] .navbar-logo::before {
+  content: '>_ ';
+  font-family: 'Courier New', Courier, monospace;
+}
+
 /* Cards */
 body[data-theme="game"] .glass-card {
   border-color: rgba(245, 158, 11, 0.12);

@@ -23,7 +23,7 @@
   height: 100%;
   padding: 0 var(--space-lg);
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr) 120px;
+  grid-template-columns: 180px minmax(0, 1fr) auto auto auto;
   align-items: center;
   gap: var(--space-lg);
 }
@@ -94,6 +94,48 @@
 
 .navbar-hamburger.is-open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Language toggle */
+.navbar-lang-toggle {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: color var(--transition-fast), border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.navbar-lang-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.navbar-mobile-lang-toggle {
+  display: block;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: color var(--transition-fast), background var(--transition-fast);
+  font-family: inherit;
+}
+
+.navbar-mobile-lang-toggle:hover {
+  color: var(--accent-primary);
+  background: var(--glass-bg);
 }
 
 /* Theme reset button */
@@ -173,6 +215,7 @@
 @media (max-width: 768px) {
   .navbar-inner {
     grid-template-columns: minmax(0, 1fr) 44px;
+    gap: var(--space-sm);
   }
 
   .navbar-logo {
@@ -183,11 +226,48 @@
     display: none;
   }
 
+  .navbar-lang-toggle {
+    display: none;
+  }
+
   .navbar-theme-reset {
+    display: none;
+  }
+
+  .navbar-toss-link {
     display: none;
   }
 
   .navbar-hamburger {
     display: flex;
   }
+}
+
+.navbar-toss-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #3182F6;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.navbar-toss-link:hover {
+  background: #1D6DE0;
+  transform: translateY(-1px);
+}
+
+.navbar-mobile-toss-link {
+  display: block;
+  padding: 12px 24px;
+  color: #3182F6;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
 }

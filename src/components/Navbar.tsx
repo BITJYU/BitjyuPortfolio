@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { RefreshCw } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -11,12 +14,14 @@ const NAV_LINKS = [
   { label: 'Frontend', href: '#frontend' },
   { label: 'Backend', href: '#backend' },
   { label: 'Contact', href: '#contact' },
-]
+] as const
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { theme, resetTheme, isReady } = useTheme()
+  const { lang, toggleLang } = useLanguage()
+  const t = i18n[lang].navbar
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,17 +51,31 @@ function Navbar() {
           ))}
         </ul>
 
+        {/* Language toggle */}
+        <button
+          className="navbar-lang-toggle"
+          onClick={toggleLang}
+          aria-label={`Switch to ${lang === 'ko' ? 'English' : '한국어'}`}
+        >
+          {lang === 'ko' ? 'EN' : 'KO'}
+        </button>
+
         {/* Theme reset button — only show after survey is done */}
         {isReady && (
           <button
             className="navbar-theme-reset"
             onClick={resetTheme}
-            title="테마 다시 고르기"
-            aria-label={`현재 테마: ${theme}. 다시 고르기`}
+            title={t.changeTheme}
+            aria-label={t.currentTheme(theme)}
           >
             <RefreshCw size={13} /> {theme}
           </button>
         )}
+
+        {/* Toss UI page link */}
+        <Link to="/toss" className="navbar-toss-link">
+          Toss UI →
+        </Link>
 
         {/* Hamburger button (mobile) */}
         <button
@@ -81,13 +100,23 @@ function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <button className="navbar-mobile-lang-toggle" onClick={() => { toggleLang(); closeMenu() }}>
+              {lang === 'ko' ? 'EN' : 'KO'}
+            </button>
+          </li>
           {isReady && (
             <li>
               <button className="navbar-mobile-theme-reset" onClick={() => { resetTheme(); closeMenu() }}>
-                <RefreshCw size={13} /> 테마 다시 고르기
+                <RefreshCw size={13} /> {t.changeTheme}
               </button>
             </li>
           )}
+          <li>
+            <Link to="/toss" className="navbar-mobile-toss-link" onClick={closeMenu}>
+              Toss UI →
+            </Link>
+          </li>
         </ul>
       )}
     </nav>

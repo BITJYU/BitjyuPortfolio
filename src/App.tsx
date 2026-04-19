@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import ThemeIntro from './components/ThemeIntro'
 import ThemeExtras from './components/ThemeExtras'
 import Navbar from './components/Navbar'
@@ -11,7 +13,9 @@ import Footer from './components/Footer'
 import MouseSpotlight from './components/MouseSpotlight'
 import ScrollReveal from './components/ScrollReveal'
 
-function App() {
+const TossPage = lazy(() => import('./components/toss/TossPage'))
+
+function MainPortfolio() {
   return (
     <>
       <ThemeIntro />
@@ -30,6 +34,24 @@ function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPortfolio />} />
+        <Route
+          path="/toss"
+          element={
+            <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', color: '#3182F6', fontFamily: 'Pretendard, sans-serif', fontSize: '1.1rem' }}>Loading...</div>}>
+              <TossPage />
+            </Suspense>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -9,8 +9,8 @@
 }
 
 .skills-category {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: var(--font-size-tag);
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
@@ -29,7 +29,7 @@
   background: rgba(99, 102, 241, 0.15);
   border: 1px solid rgba(99, 102, 241, 0.25);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
+  font-size: var(--font-size-small);
   color: var(--text-primary);
   transition: transform var(--transition-fast), background var(--transition-fast);
   cursor: default;

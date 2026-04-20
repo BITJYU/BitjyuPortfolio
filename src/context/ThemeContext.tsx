@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 
-export type Theme = 'backend' | 'ai' | 'game'
+export type Theme = 'backend' | 'ai' | 'game' | 'toss'
 export type Style = 'formal' | 'fun'
 
 interface ThemeContextValue {

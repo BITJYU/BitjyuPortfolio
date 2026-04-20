@@ -1,0 +1,196 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+.toss-page {
+  --toss-white:        #FFFFFF;
+  --toss-bg:           #F9FAFB;
+  --toss-blue:         #3182F6;
+  --toss-blue-hover:   #1D6DE0;
+  --toss-blue-light:   #EFF6FF;
+  --toss-text:         #191F28;
+  --toss-sub:          #6B7280;
+  --toss-card-bg:      #F2F4F6;
+  --toss-glass-bg:     rgba(255, 255, 255, 0.60);
+  --toss-glass-blur:   blur(16px);
+  --toss-glass-border: 1px solid rgba(255, 255, 255, 0.80);
+  --toss-glass-shadow: 0 8px 32px rgba(49, 130, 246, 0.08);
+
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
+    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: var(--toss-white);
+  color: var(--toss-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.toss-section {
+  padding: 96px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.toss-section--alt {
+  background: var(--toss-bg);
+}
+
+.toss-section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--toss-text);
+  margin-bottom: 8px;
+}
+
+.toss-section-title span {
+  color: var(--toss-blue);
+}
+
+.toss-section-subtitle {
+  font-size: 1rem;
+  color: var(--toss-sub);
+  margin-bottom: 48px;
+}
+
+.toss-glass-card {
+  background: var(--toss-glass-bg);
+  backdrop-filter: var(--toss-glass-blur);
+  -webkit-backdrop-filter: var(--toss-glass-blur);
+  border: var(--toss-glass-border);
+  box-shadow: var(--toss-glass-shadow);
+  border-radius: 20px;
+}
+
+/* Shared button styles — used across multiple Toss sections */
+.toss-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: #3182F6;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.toss-btn-primary:hover {
+  background: #1D6DE0;
+  transform: translateY(-2px);
+}
+
+.toss-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: transparent;
+  color: #3182F6;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid #3182F6;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.toss-btn-ghost:hover {
+  background: #EFF6FF;
+  transform: translateY(-2px);
+}
+
+/* Shared tag style — used in Projects and Games */
+.toss-proj-tag {
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #F2F4F6;
+  color: #374151;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.toss-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.toss-content-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toss-content-card h3 {
+  margin: 0 0 10px;
+  color: var(--toss-text);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.toss-content-card p {
+  color: var(--toss-sub);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+
+.toss-card-kicker {
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--toss-blue-light);
+  color: var(--toss-blue);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.toss-card-sub {
+  color: var(--toss-sub);
+  font-size: 0.85rem;
+}
+
+.toss-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--toss-sub);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.toss-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toss-contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toss-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 32px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: var(--toss-sub);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .toss-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

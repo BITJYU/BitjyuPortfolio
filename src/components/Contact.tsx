@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 import { BriefcaseBusiness, FolderGit2, Mail } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import './Contact.css'
 
 interface ContactItem {
@@ -9,37 +11,38 @@ interface ContactItem {
   href: string
 }
 
-const CONTACTS: ContactItem[] = [
-  {
-    icon: <FolderGit2 size={28} />,
-    label: 'GitHub',
-    description: '프로젝트 코드 및 오픈소스 기여',
-    href: 'https://github.com/BITJYU',
-  },
-  {
-    icon: <Mail size={28} />,
-    label: 'Email',
-    description: 'whtnals0417@gmail.com',
-    href: 'mailto:whtnals0417@gmail.com',
-  },
-  {
-    icon: <BriefcaseBusiness size={28} />,
-    label: 'LinkedIn',
-    description: '경력 및 네트워크',
-    href: '#',
-  },
-]
-
 function Contact() {
+  const { lang } = useLanguage()
+  const t = i18n[lang].contact
+
+  const CONTACTS: ContactItem[] = [
+    {
+      icon: <FolderGit2 size={28} />,
+      label: t.githubLabel,
+      description: t.githubDesc,
+      href: 'https://github.com/BITJYU',
+    },
+    {
+      icon: <Mail size={28} />,
+      label: t.emailLabel,
+      description: 'whtnals0417@gmail.com',
+      href: 'mailto:whtnals0417@gmail.com',
+    },
+    {
+      icon: <BriefcaseBusiness size={28} />,
+      label: t.linkedinLabel,
+      description: t.linkedinDesc,
+      href: '#',
+    },
+  ]
+
   return (
     <section id="contact" className="section contact">
       <div className="section-inner">
         <h2 className="section-title">
-          Get in <span className="gradient-text">Touch</span>
+          {t.titlePrefix} <span className="gradient-text">{t.titleHighlight}</span>
         </h2>
-        <p className="contact-subtitle">
-          프로젝트 협업이나 채용 문의 등 언제든지 연락주세요.
-        </p>
+        <p className="contact-subtitle">{t.subtitle}</p>
 
         <div className="contact-grid">
           {CONTACTS.map((item, i) => (

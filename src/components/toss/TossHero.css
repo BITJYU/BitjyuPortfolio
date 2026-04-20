@@ -1,0 +1,243 @@
+.toss-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #FFFFFF;
+  padding-top: 64px;
+}
+
+.toss-hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.toss-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  min-height: calc(100vh - 64px);
+}
+
+.toss-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toss-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #EFF6FF;
+  color: #3182F6;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.toss-hero-title {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: #191F28;
+  margin: 0;
+}
+
+.toss-hero-title span {
+  color: #3182F6;
+}
+
+.toss-hero-sub {
+  font-size: 1rem;
+  color: #6B7280;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0;
+}
+
+.toss-hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.toss-hero-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #D1D5DB;
+  font-size: 0.75rem;
+  margin-top: 8px;
+}
+
+.toss-hero-scroll-line {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(180deg, #3182F6, transparent);
+}
+
+.toss-hero-scene {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toss-hero-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.toss-hero-card {
+  position: relative;
+  z-index: 2;
+  width: 240px;
+  padding: 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 60px rgba(49, 130, 246, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
+  transform-style: preserve-3d;
+  transform: perspective(600px) rotateY(-6deg) rotateX(3deg);
+  transition: transform 0.12s ease-out;
+  cursor: default;
+}
+
+.toss-hero-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.toss-hero-card-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3182F6, #6366F1);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.toss-hero-card-role {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #191F28;
+  letter-spacing: -0.02em;
+}
+
+.toss-hero-card-sub {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin-top: 2px;
+}
+
+.toss-hero-card-divider {
+  height: 3px;
+  background: linear-gradient(90deg, #3182F6, #8B5CF6);
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.toss-hero-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.toss-hero-card-tag {
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.toss-hero-card-tag--blue   { background: #EFF6FF; color: #3182F6; }
+.toss-hero-card-tag--violet { background: #F5F3FF; color: #7C3AED; }
+.toss-hero-card-tag--cyan   { background: #ECFEFF; color: #0891B2; }
+.toss-hero-card-tag--amber  { background: #FFFBEB; color: #D97706; }
+
+.toss-hero-card-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #F3F4F6;
+}
+
+.toss-hero-card-stats-label { font-size: 0.75rem; color: #9CA3AF; }
+.toss-hero-card-stats-value { font-weight: 900; font-size: 1.4rem; color: #3182F6; }
+
+@keyframes cardContentIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.toss-hero-card-content {
+  animation: cardContentIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.toss-hero-card-toggle {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+  padding: 4px;
+  background: #F3F4F6;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.toss-hero-card-tab {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 0;
+  border-radius: 7px;
+  color: #9CA3AF;
+  transition: background 0.22s ease, color 0.22s ease;
+  user-select: none;
+}
+
+.toss-hero-card-tab--on {
+  background: #FFFFFF;
+  color: #3182F6;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 768px) {
+  .toss-hero-inner {
+    grid-template-columns: 1fr;
+    padding-top: 32px;
+    padding-bottom: 48px;
+    min-height: unset;
+  }
+  .toss-hero-scene {
+    height: 300px;
+  }
+  .toss-hero-card {
+    width: 200px;
+    padding: 18px;
+  }
+}

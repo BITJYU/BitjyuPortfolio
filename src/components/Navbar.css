@@ -34,8 +34,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
   letter-spacing: 0;
   text-decoration: none;
 }
@@ -51,8 +51,8 @@
 
 .navbar-link {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 600;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -102,7 +102,7 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
+  font-size: var(--font-size-tag);
   font-weight: 700;
   color: var(--text-muted);
   cursor: pointer;
@@ -124,7 +124,7 @@
   background: transparent;
   border: none;
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: var(--font-size-button);
   font-weight: 700;
   text-align: left;
   cursor: pointer;
@@ -146,8 +146,8 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: var(--font-size-tag);
+  font-weight: 700;
   color: var(--text-muted);
   cursor: pointer;
   transition: color var(--transition-fast), border-color var(--transition-fast),
@@ -172,7 +172,7 @@
   background: transparent;
   border: none;
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: var(--font-size-button);
   font-weight: 500;
   text-align: left;
   cursor: pointer;
@@ -201,7 +201,7 @@
   display: block;
   padding: var(--space-md) var(--space-lg);
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: var(--font-size-section-copy);
   font-weight: 500;
   text-decoration: none;
   transition: color var(--transition-fast), background var(--transition-fast);
@@ -250,7 +250,7 @@
   border-radius: 999px;
   background: #3182F6;
   color: #ffffff;
-  font-size: 0.78rem;
+  font-size: var(--font-size-small);
   font-weight: 700;
   letter-spacing: -0.01em;
   text-decoration: none;
@@ -269,5 +269,5 @@
   color: #3182F6;
   font-weight: 700;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: var(--font-size-button);
 }

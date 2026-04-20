@@ -73,7 +73,7 @@ function Navbar() {
         )}
 
         {/* Toss UI page link */}
-        <Link to="/toss" className="navbar-toss-link">
+        <Link to="/" className="navbar-toss-link">
           Toss UI →
         </Link>
 
@@ -113,7 +113,7 @@ function Navbar() {
             </li>
           )}
           <li>
-            <Link to="/toss" className="navbar-mobile-toss-link" onClick={closeMenu}>
+            <Link to="/" className="navbar-mobile-toss-link" onClick={closeMenu}>
               Toss UI →
             </Link>
           </li>

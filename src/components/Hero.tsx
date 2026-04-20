@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import './Hero.css'
 
 const TITLES = ['Backend Developer', 'AI Engineer', 'ML Model Builder & Deployer']
@@ -7,6 +9,8 @@ const DELETE_SPEED = 60
 const PAUSE_AFTER_TYPE = 1500
 
 function Hero() {
+  const { lang } = useLanguage()
+  const t = i18n[lang].hero
   const [displayed, setDisplayed] = useState('')
   const [titleIndex, setTitleIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -79,15 +83,13 @@ function Hero() {
       <div ref={orb2Ref} className="hero-orb hero-orb--2" aria-hidden="true" />
 
       <div className="hero-content">
-        <p className="hero-greeting">안녕하세요, 저는</p>
+        <p className="hero-greeting">{t.greeting}</p>
         <h1 className="hero-name gradient-text">Soomin Jo</h1>
         <div className="hero-title" aria-label={TITLES[titleIndex]}>
           <span className="hero-title-text">{displayed}</span>
           <span className="hero-cursor" aria-hidden="true">|</span>
         </div>
-        <p className="hero-subtitle">
-          IT &amp; AI 전공 개발자. 백엔드 시스템과 AI 모델을 설계하고 배포합니다.
-        </p>
+        <p className="hero-subtitle">{t.subtitle}</p>
         <div className="hero-cta">
           <a href="#about" className="btn-primary">About Me</a>
           <a href="#contact" className="btn-ghost">Contact</a>

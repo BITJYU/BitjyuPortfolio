@@ -1,0 +1,44 @@
+.toss-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.toss-skills-card {
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.toss-skills-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(49, 130, 246, 0.12);
+}
+
+.toss-skills-category {
+  font-weight: 700;
+  color: #3182F6;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+.toss-skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toss-skill-pill {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #EFF6FF;
+  color: #3182F6;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.toss-skill-pill:hover {
+  background: #DBEAFE;
+}

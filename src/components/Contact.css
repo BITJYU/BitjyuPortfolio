@@ -3,7 +3,7 @@
   color: var(--text-secondary);
   margin-top: calc(-1 * var(--space-lg));
   margin-bottom: var(--space-xl);
-  font-size: 0.95rem;
+  font-size: var(--font-size-section-copy);
 }
 
 .contact-grid {
@@ -34,18 +34,18 @@
 }
 
 .contact-icon {
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-bottom: var(--space-xs);
 }
 
 .contact-label {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
   color: var(--text-primary);
 }
 
 .contact-description {
-  font-size: 0.85rem;
+  font-size: var(--font-size-small);
   color: var(--text-muted);
   line-height: 1.5;
 }

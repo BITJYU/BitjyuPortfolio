@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { Wrench, ChevronLeft, ChevronRight } from 'lucide-react'
 import mastodon from '../assets/mastodon.png'
 import mastodon2 from '../assets/mastodon2.png'
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import './Games.css'
 
 interface BackendProject {
@@ -13,20 +15,11 @@ interface BackendProject {
   githubUrl?: string
 }
 
-const BACKEND_PROJECTS: BackendProject[] = [
-  {
-    title: '그NOM',
-    description:
-      'LibGDX로 제작한 2D 러너 게임입니다. 게임 클라이언트 제작 경험과 빌드 산출물을 보여주는 보조 프로젝트입니다.',
-    tags: ['LibGDX', 'Java', '2D Runner', 'Game Client'],
-    status: 'live',
-    githubUrl: 'https://github.com/Sumin0510/2025-VR-term',
-  },
-]
-
 const MASTODON_SLIDES = [mastodon, mastodon2]
 
 function MastodonSlider() {
+  const { lang } = useLanguage()
+  const t = i18n[lang].games
   const [idx, setIdx] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -51,10 +44,10 @@ function MastodonSlider() {
     >
       <div className="backend-slider-wrap">
         <img src={MASTODON_SLIDES[idx]} alt={`Mastodon screenshot ${idx + 1}`} className="backend-slider-img" />
-        <button className="slider-btn slider-btn--prev" onClick={prev} aria-label="이전">
+        <button className="slider-btn slider-btn--prev" onClick={prev} aria-label={t.prevSlide}>
           <ChevronLeft size={20} />
         </button>
-        <button className="slider-btn slider-btn--next" onClick={next} aria-label="다음">
+        <button className="slider-btn slider-btn--next" onClick={next} aria-label={t.nextSlide}>
           <ChevronRight size={20} />
         </button>
         <div className="slider-dots">
@@ -63,28 +56,25 @@ function MastodonSlider() {
               key={i}
               className={`slider-dot${i === idx ? ' slider-dot--active' : ''}`}
               onClick={() => setIdx(i)}
-              aria-label={`슬라이드 ${i + 1}`}
+              aria-label={t.slideLabel(i + 1)}
             />
           ))}
         </div>
       </div>
       <div className="backend-card-body">
         <div className="backend-card-header">
-          <span className="proj-badge proj-badge--be">BACKEND</span>
-          <h3 className="game-title">Mastodon 커뮤니티 인스턴스</h3>
-          <span className="game-badge game-badge--live">● Live</span>
+          <span className="proj-badge proj-badge--be">{t.backendBadge}</span>
+          <h3 className="game-title">{t.mastodonTitle}</h3>
+          <span className="game-badge game-badge--live">{t.liveLabel}</span>
         </div>
-        <p className="game-description">
-          소규모 커뮤니티 전용 Mastodon 인스턴스를 포크해 직접 운영·커스터마이징했습니다.
-          Ruby on Rails 기반 분산형 SNS 서버 배포 및 설정 경험을 포함합니다.
-        </p>
+        <p className="game-description">{t.mastodonDesc}</p>
         <div className="game-tags">
           {['Ruby', 'Rails', 'Mastodon', 'Self-hosted', 'AGPL-3.0'].map((tag) => (
             <span key={tag} className="game-tag">{tag}</span>
           ))}
         </div>
         <div className="game-links">
-          <a href="https://github.com/BITJYU/BNWmastodon" className="btn-ghost game-btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/BITJYU/BNWmastodon" className="btn-ghost game-btn" target="_blank" rel="noopener noreferrer">{t.githubButton}</a>
         </div>
       </div>
     </article>
@@ -92,15 +82,26 @@ function MastodonSlider() {
 }
 
 function Games() {
+  const { lang } = useLanguage()
+  const t = i18n[lang].games
+
+  const BACKEND_PROJECTS: BackendProject[] = [
+    {
+      title: t.projects[0].title,
+      description: t.projects[0].description,
+      tags: ['LibGDX', 'Java', '2D Runner', 'Game Client'],
+      status: 'live',
+      githubUrl: 'https://github.com/Sumin0510/2025-VR-term',
+    },
+  ]
+
   return (
     <section id="backend" className="section games">
       <div className="section-inner">
         <h2 className="section-title">
-          <span className="gradient-text">Backend</span>
+          <span className="gradient-text">{t.title}</span>
         </h2>
-        <p className="games-subtitle">
-          서버·운영·게임 클라이언트 등 백엔드 및 기타 구현 사례입니다.
-        </p>
+        <p className="games-subtitle">{t.subtitle}</p>
 
         <MastodonSlider />
 
@@ -116,7 +117,7 @@ function Games() {
                 <div className="game-header">
                   <h3 className="game-title">{project.title}</h3>
                   <span className={`game-badge game-badge--${project.status}`}>
-                    {project.status === 'live' ? '● Live' : <><Wrench size={12} /> 개발 중</>}
+                    {project.status === 'live' ? t.liveLabel : <><Wrench size={12} /> {t.inDevelopment}</>}
                   </span>
                 </div>
                 <p className="game-description">{project.description}</p>
@@ -129,12 +130,12 @@ function Games() {
               <div className="game-links">
                 {project.url && (
                   <a href={project.url} className="btn-primary game-btn" target="_blank" rel="noopener noreferrer">
-                    Demo
+                    {t.demoButton}
                   </a>
                 )}
                 {project.githubUrl && (
                   <a href={project.githubUrl} className="btn-ghost game-btn" target="_blank" rel="noopener noreferrer">
-                    GitHub
+                    {t.githubButton}
                   </a>
                 )}
               </div>

@@ -1,62 +1,32 @@
 import { useState, useRef, useEffect } from 'react'
 import { Bot, X, Send } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import './ChatBot.css'
-
-interface QA {
-  q: string
-  a: string
-  keywords: string[]
-}
-
-const QA_DATA: QA[] = [
-  {
-    q: '기술 스택이 뭔가요?',
-    a: 'Python, Node.js, TypeScript를 주로 사용합니다. 프론트엔드는 React, DB는 MongoDB / MySQL / Oracle을 다룰 수 있고, 클라우드는 GCP와 AWS 경험이 있습니다.',
-    keywords: ['기술', '스택', 'stack', 'tech', '언어', '사용'],
-  },
-  {
-    q: 'AI / ML 경험은?',
-    a: 'PyTorch 기반 모델 학습과 LoRA Fine-tuning 경험이 있습니다. Hugging Face를 통한 LLM 실험 및 배포까지 직접 진행했습니다.',
-    keywords: ['ai', 'ml', '파인튜닝', 'pytorch', '모델', 'llm', '딥러닝', '머신러닝'],
-  },
-  {
-    q: '경력 / 경험은?',
-    a: 'IT & AI 전공 배경으로 다수의 프로젝트 경험을 보유하고 있습니다. 백엔드 서버 개발부터 AI 모델 배포까지 풀스택 경험이 있습니다. [Experience 섹션을 참고해주세요]',
-    keywords: ['경력', '경험', 'experience', '인턴', '일한', '직장'],
-  },
-  {
-    q: '프로젝트 소개',
-    a: 'Node.js + MongoDB 기반 백엔드 프로젝트, PyTorch AI 모델 프로젝트, GCP 기반 React 서비스 등 다양한 프로젝트를 진행했습니다. [Projects 섹션에서 자세히 확인하세요]',
-    keywords: ['프로젝트', 'project', '만든', '개발한', '포트폴리오'],
-  },
-  {
-    q: '연락처는?',
-    a: 'GitHub, Email, LinkedIn을 통해 연락하실 수 있습니다. 페이지 하단 Contact 섹션에서 확인해주세요!',
-    keywords: ['연락', 'contact', '이메일', '메일', '연락처', '깃허브', 'github'],
-  },
-]
 
 interface Message {
   role: 'user' | 'bot'
   text: string
 }
 
-function findAnswer(input: string): string {
+function findAnswer(input: string, qaData: readonly { a: string; keywords: readonly string[] }[], fallback: string): string {
   const lower = input.toLowerCase()
-  for (const qa of QA_DATA) {
+  for (const qa of qaData) {
     if (qa.keywords.some((kw) => lower.includes(kw))) {
       return qa.a
     }
   }
-  return '음... 제가 잘 모르는 질문이네요. 아래 버튼 중에 선택하시거나 직접 연락해주세요!'
+  return fallback
 }
 
 function ChatBot() {
   const { style } = useTheme()
+  const { lang } = useLanguage()
+  const t = i18n[lang].chatbot
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: '안녕하세요! 궁금한 것을 물어보세요.' },
+    { role: 'bot', text: t.initialMessage },
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -75,13 +45,17 @@ function ChatBot() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
 
+  useEffect(() => {
+    setMessages([{ role: 'bot', text: t.initialMessage }])
+  }, [t.initialMessage])
+
   const sendMessage = (text: string) => {
     if (!text.trim()) return
     setMessages((prev) => [...prev, { role: 'user', text }])
     setInput('')
     setTyping(true)
     timerRef.current = setTimeout(() => {
-      const answer = findAnswer(text)
+      const answer = findAnswer(text, t.qa, t.fallback)
       setMessages((prev) => [...prev, { role: 'bot', text: answer }])
       setTyping(false)
     }, 700)
@@ -93,7 +67,7 @@ function ChatBot() {
       <button
         className={`chatbot-toggle${open ? ' chatbot-toggle--open' : ''}`}
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? '채팅 닫기' : '채팅 열기'}
+        aria-label={open ? t.closeLabel : t.openLabel}
       >
         {open ? <X size={20} /> : <Bot size={20} />}
       </button>
@@ -102,8 +76,8 @@ function ChatBot() {
       {open && (
         <div className="chatbot-window">
           <div className="chatbot-header">
-            <span className="chatbot-title">Portfolio Assistant</span>
-            <span className="chatbot-status">● online</span>
+            <span className="chatbot-title">{t.title}</span>
+            <span className="chatbot-status">{t.status}</span>
           </div>
 
           <div className="chatbot-messages">
@@ -122,7 +96,7 @@ function ChatBot() {
 
           {/* Quick-pick buttons */}
           <div className="chatbot-quickpicks">
-            {QA_DATA.map((qa) => (
+            {t.qa.map((qa) => (
               <button
                 key={qa.q}
                 className="chatbot-quickpick"
@@ -141,7 +115,7 @@ function ChatBot() {
               className="chatbot-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="질문을 입력하세요..."
+              placeholder={t.placeholder}
               disabled={typing}
             />
             <button className="chatbot-send" type="submit" disabled={typing || !input.trim()}>

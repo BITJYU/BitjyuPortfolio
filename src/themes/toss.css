@@ -1,0 +1,446 @@
+/* =============================================
+   Toss UI — Conference-grade Dynamic Theme
+   Inspired by TMC / if.kakao visual language:
+   dark stage, neon-blue glow, bold Pretendard
+   ============================================= */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+/* ── CSS Variables ── */
+body[data-theme="toss"] {
+  --accent-primary:   #3182F6;
+  --accent-secondary: #60A5FA;
+  --accent-gradient:  linear-gradient(135deg, #3182F6 0%, #60A5FA 50%, #93C5FD 100%);
+
+  --glass-bg:     rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(49, 130, 246, 0.18);
+  --glass-blur:   blur(20px);
+  --bg-dot-color: rgba(255, 255, 255, 0.07);
+
+  --text-primary:   #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.72);
+  --text-muted:     rgba(255, 255, 255, 0.40);
+
+  --bg-gradient: #07090F;
+
+  --toss-glow:  0 0 40px rgba(49, 130, 246, 0.25), 0 0 80px rgba(49, 130, 246, 0.10);
+  --toss-glow-sm: 0 0 12px rgba(49, 130, 246, 0.35);
+
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
+    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+/* ── Body — dark stage + dot-grid texture ── */
+body[data-theme="toss"] {
+  background: #07090F;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -5%,  rgba(49, 130, 246, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(96, 165, 250, 0.12) 0%, transparent 55%),
+    radial-gradient(circle  1px  at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+  background-attachment: fixed, fixed, fixed;
+  color: #FFFFFF;
+}
+
+/* ── Glass cards — conference card ── */
+body[data-theme="toss"] .glass-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(49, 130, 246, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 4px 24px rgba(0,0,0,0.4);
+}
+
+body[data-theme="toss"] .glass-card:hover {
+  border-color: rgba(49, 130, 246, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 0 0 1px rgba(49, 130, 246, 0.25),
+    0 8px 40px rgba(0,0,0,0.5),
+    var(--toss-glow);
+  transform: translateY(-4px);
+}
+
+/* ── Gradient text — vivid blue→cyan ── */
+body[data-theme="toss"] .gradient-text {
+  background: linear-gradient(135deg, #60A5FA 0%, #3182F6 40%, #93C5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section title — oversized conference style ── */
+body[data-theme="toss"] .section-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+}
+
+/* ── Buttons ── */
+body[data-theme="toss"] .btn-primary {
+  background: linear-gradient(135deg, #3182F6, #1D6DE0);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  box-shadow: var(--toss-glow-sm), inset 0 1px 0 rgba(255,255,255,0.15);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+body[data-theme="toss"] .btn-primary:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, #60A5FA, #3182F6);
+  box-shadow: 0 0 20px rgba(49,130,246,0.5), 0 0 40px rgba(49,130,246,0.2);
+  transform: translateY(-2px);
+}
+
+body[data-theme="toss"] .btn-ghost {
+  border-color: rgba(49, 130, 246, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body[data-theme="toss"] .btn-ghost:hover {
+  background: rgba(49, 130, 246, 0.12);
+  border-color: rgba(49, 130, 246, 0.7);
+  color: #93C5FD;
+}
+
+/* ── Navbar ── */
+body[data-theme="toss"] .navbar--scrolled {
+  background: rgba(7, 9, 15, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(49, 130, 246, 0.15);
+}
+
+body[data-theme="toss"] .navbar-link {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+}
+
+body[data-theme="toss"] .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+body[data-theme="toss"] .navbar-theme-reset,
+body[data-theme="toss"] .navbar-lang-toggle {
+  background: rgba(49, 130, 246, 0.08);
+  border-color: rgba(49, 130, 246, 0.25);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="toss"] .navbar-theme-reset:hover,
+body[data-theme="toss"] .navbar-lang-toggle:hover {
+  background: rgba(49, 130, 246, 0.18);
+  border-color: rgba(49, 130, 246, 0.6);
+  color: #93C5FD;
+}
+
+body[data-theme="toss"] .navbar-mobile-menu {
+  background: rgba(7, 9, 15, 0.96);
+  border-top-color: rgba(49, 130, 246, 0.15);
+}
+
+body[data-theme="toss"] .navbar-mobile-link {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+body[data-theme="toss"] .navbar-mobile-link:hover {
+  color: #FFFFFF;
+  background: rgba(49, 130, 246, 0.08);
+}
+
+body[data-theme="toss"] .navbar-mobile-theme-reset,
+body[data-theme="toss"] .navbar-mobile-lang-toggle {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="toss"] .navbar-mobile-theme-reset:hover,
+body[data-theme="toss"] .navbar-mobile-lang-toggle:hover {
+  color: #93C5FD;
+  background: rgba(49, 130, 246, 0.08);
+}
+
+/* ── Hero — replace default orbs with toss-blue ── */
+body[data-theme="toss"] .hero-orb--1 {
+  background: radial-gradient(circle, rgba(49, 130, 246, 0.55), transparent 70%);
+  opacity: 0.5;
+  filter: blur(60px);
+}
+
+body[data-theme="toss"] .hero-orb--2 {
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.4), transparent 70%);
+  opacity: 0.4;
+  filter: blur(80px);
+}
+
+body[data-theme="toss"] .hero-greeting {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body[data-theme="toss"] .hero-name {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+body[data-theme="toss"] .hero-title-text,
+body[data-theme="toss"] .hero-cursor {
+  color: #60A5FA;
+}
+
+body[data-theme="toss"] .hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Skills ── */
+body[data-theme="toss"] .skills-category {
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+body[data-theme="toss"] .skill-pill {
+  background: rgba(49, 130, 246, 0.08);
+  border: 1px solid rgba(49, 130, 246, 0.2);
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+
+body[data-theme="toss"] .skill-pill:hover {
+  background: rgba(49, 130, 246, 0.18);
+  border-color: rgba(49, 130, 246, 0.5);
+  color: #93C5FD;
+}
+
+/* ── Experience ── */
+body[data-theme="toss"] .timeline-dot {
+  background: #3182F6;
+  border-color: #3182F6;
+  box-shadow: 0 0 10px rgba(49, 130, 246, 0.6), 0 0 20px rgba(49, 130, 246, 0.3);
+}
+
+body[data-theme="toss"] .timeline-period {
+  background: rgba(49, 130, 246, 0.12);
+  color: #60A5FA;
+  border: 1px solid rgba(49, 130, 246, 0.25);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+body[data-theme="toss"] .timeline-role {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+body[data-theme="toss"] .cert-year {
+  color: #60A5FA;
+  font-weight: 700;
+}
+
+body[data-theme="toss"] .lang-level {
+  color: #60A5FA;
+  font-weight: 600;
+}
+
+/* ── Project badges ── */
+body[data-theme="toss"] .proj-badge--ai {
+  background: rgba(49, 130, 246, 0.14);
+  color: #93C5FD;
+  border: 1px solid rgba(49, 130, 246, 0.3);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+body[data-theme="toss"] .proj-badge--fe,
+body[data-theme="toss"] .fe-badge {
+  background: rgba(96, 165, 250, 0.10);
+  color: #60A5FA;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+body[data-theme="toss"] .proj-badge--be {
+  background: rgba(49, 130, 246, 0.10);
+  color: #93C5FD;
+  border: 1px solid rgba(49, 130, 246, 0.22);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ── Project / game tags ── */
+body[data-theme="toss"] .proj-tag,
+body[data-theme="toss"] .fe-tag,
+body[data-theme="toss"] .game-tag {
+  background: rgba(49, 130, 246, 0.08);
+  border: 1px solid rgba(49, 130, 246, 0.18);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Project titles ── */
+body[data-theme="toss"] .proj-title,
+body[data-theme="toss"] .fe-title,
+body[data-theme="toss"] .game-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ── Live badge ── */
+body[data-theme="toss"] .game-badge--live {
+  color: #34D399;
+  background: rgba(52, 211, 153, 0.10);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+/* ── Slider ── */
+body[data-theme="toss"] .slider-btn {
+  background: rgba(7, 9, 15, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(49, 130, 246, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+body[data-theme="toss"] .slider-btn:hover {
+  background: rgba(49, 130, 246, 0.2);
+  border-color: rgba(49, 130, 246, 0.5);
+  color: #93C5FD;
+}
+
+body[data-theme="toss"] .slider-dot {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body[data-theme="toss"] .slider-dot--active {
+  background: #3182F6;
+  box-shadow: 0 0 6px rgba(49, 130, 246, 0.6);
+}
+
+/* ── Contact ── */
+body[data-theme="toss"] .contact-icon {
+  color: #60A5FA;
+  filter: drop-shadow(0 0 6px rgba(49, 130, 246, 0.5));
+}
+
+body[data-theme="toss"] .contact-label {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Footer ── */
+body[data-theme="toss"] .footer {
+  background: transparent;
+  border-top: 1px solid rgba(49, 130, 246, 0.12);
+}
+
+/* ── ThemeIntro ── */
+body[data-theme="toss"] .intro-overlay {
+  background: #07090F;
+  --intro-orb-rgb: 49, 130, 246;
+  --intro-orb-core: #1D4ED8;
+}
+
+body[data-theme="toss"] .intro-title-text,
+body[data-theme="toss"] .intro-title-cursor {
+  color: #60A5FA;
+}
+
+body[data-theme="toss"] .intro-name {
+  font-size: var(--font-size-hero-title);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+body[data-theme="toss"] .intro-greeting {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="toss"] .intro-copy {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="toss"] .intro-console {
+  border-color: rgba(49, 130, 246, 0.2);
+  box-shadow: 0 0 40px rgba(49, 130, 246, 0.1), 0 4px 32px rgba(0,0,0,0.5);
+}
+
+body[data-theme="toss"] .intro-status-dot {
+  background: #3182F6;
+  box-shadow: 0 0 8px rgba(49, 130, 246, 0.8), 0 0 16px rgba(49, 130, 246, 0.4);
+}
+
+body[data-theme="toss"] .intro-prompt {
+  border-top-color: rgba(49, 130, 246, 0.12);
+  background: rgba(49, 130, 246, 0.04);
+}
+
+body[data-theme="toss"] .intro-prompt input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="toss"] .intro-prompt button {
+  color: #60A5FA;
+}
+
+body[data-theme="toss"] .intro-preset-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(49, 130, 246, 0.15);
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 600;
+}
+
+body[data-theme="toss"] .intro-preset-card:hover,
+body[data-theme="toss"] .intro-preset-card.is-selected {
+  background: rgba(49, 130, 246, 0.14);
+  border-color: rgba(49, 130, 246, 0.55);
+  color: #93C5FD;
+  box-shadow: var(--toss-glow-sm);
+}
+
+body[data-theme="toss"] .intro-static-note {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Conference-grade section number accent ── */
+body[data-theme="toss"] .section-title {
+  position: relative;
+}
+
+body[data-theme="toss"] .section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #3182F6, transparent);
+  border-radius: 999px;
+  margin: var(--space-sm) auto 0;
+}
+
+/* ── About card ── */
+body[data-theme="toss"] .about-info-label {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+body[data-theme="toss"] .about-card-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}

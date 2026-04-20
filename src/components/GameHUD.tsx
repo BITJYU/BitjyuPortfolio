@@ -1,13 +1,17 @@
 import { useState } from 'react'
 import { Map } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import GameMap from './GameMap'
 import './GameHUD.css'
 
-const TOTAL_SECTIONS = 7
+const TOTAL_SECTIONS = 8
 
 function GameHUD() {
   const { visitedSections } = useTheme()
+  const { lang } = useLanguage()
+  const t = i18n[lang].gameUi
   const [mapOpen, setMapOpen] = useState(false)
 
   const visited = visitedSections.size
@@ -16,7 +20,7 @@ function GameHUD() {
 
   return (
     <>
-      <div className="game-hud" role="status" aria-label="게임 진행 상황">
+      <div className="game-hud" role="status" aria-label={t.progressLabel}>
         <span className="hud-level">LV.{level}</span>
 
         <div className="hud-xp-bar" aria-label={`XP ${xpPct}%`}>
@@ -28,9 +32,9 @@ function GameHUD() {
         <button
           className="hud-map-btn"
           onClick={() => setMapOpen(true)}
-          aria-label="챕터 맵 열기"
+          aria-label={t.openMap}
         >
-          <Map size={14} /> Map
+          <Map size={14} /> {t.mapButton}
         </button>
       </div>
 

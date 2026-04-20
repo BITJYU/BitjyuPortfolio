@@ -1,0 +1,16 @@
+.toss-footer {
+  background: #F9FAFB;
+  border-top: 1px solid #E5E7EB;
+  padding: 32px 24px;
+}
+
+.toss-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.toss-footer-copy {
+  font-size: 0.85rem;
+  color: #9CA3AF;
+}

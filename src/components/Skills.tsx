@@ -1,30 +1,20 @@
+import { useLanguage } from '../context/LanguageContext'
+import i18n from '../i18n'
 import './Skills.css'
 
-interface SkillCategory {
-  category: string
-  skills: string[]
-}
-
-const SKILL_DATA: SkillCategory[] = [
-  { category: 'Languages', skills: ['Python', 'Java','TypeScript', 'JavaScript'] },
-  {
-    category: 'Full-Stack',
-    skills: ['React', 'Vue', 'Next.js', 'Vite', 'Node.js', 'WebSocket', 'Google Apps Script'],
-  },
-  { category: 'Infra / Cloud', skills: ['Docker', 'Docker Compose', 'Redis', 'PostgreSQL', 'Sidekiq', 'GCP', 'Firebase'] },
-  { category: 'AI / ML', skills: ['PyTorch', 'LoRA Fine-tuning', 'Hugging Face', 'LLM Tooling', 'Claude API'] },
-]
-
 function Skills() {
+  const { lang } = useLanguage()
+  const t = i18n[lang].skills
+
   return (
     <section id="skills" className="section skills">
       <div className="section-inner">
         <h2 className="section-title">
-          Tech <span className="gradient-text">Skills</span>
+          {t.titlePrefix} <span className="gradient-text">{t.titleHighlight}</span>
         </h2>
 
         <div className="skills-grid">
-          {SKILL_DATA.map((item, i) => (
+          {t.categories.map((item, i) => (
             <div
               key={item.category}
               className="glass-card skills-card reveal"

@@ -1,0 +1,38 @@
+.toss-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.toss-contact-card {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.toss-contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(49, 130, 246, 0.14);
+}
+
+.toss-contact-icon {
+  color: #3182F6;
+  margin-bottom: 4px;
+}
+
+.toss-contact-label {
+  font-weight: 800;
+  font-size: 1rem;
+  color: #191F28;
+  letter-spacing: -0.02em;
+}
+
+.toss-contact-desc {
+  font-size: 0.85rem;
+  color: #6B7280;
+}

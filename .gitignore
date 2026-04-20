@@ -17,6 +17,8 @@ CLAUDE.md
 .claude/
 .codex/
 .codex-*/
+.superpowers/
+docs/superpowers/
 
 # Temporary and scratch files
 tmp/

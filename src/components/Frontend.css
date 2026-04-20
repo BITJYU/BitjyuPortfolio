@@ -3,7 +3,7 @@
   color: var(--text-secondary);
   margin-top: calc(-1 * var(--space-lg));
   margin-bottom: var(--space-xl);
-  font-size: 0.95rem;
+  font-size: var(--font-size-section-copy);
 }
 
 .fe-featured-card {
@@ -55,14 +55,14 @@
 }
 
 .fe-project-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
   color: var(--text-primary);
   margin-bottom: var(--space-md);
 }
 
 .fe-project-description {
-  font-size: 0.9rem;
+  font-size: var(--font-size-body);
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-md);
@@ -73,7 +73,7 @@
   background: rgba(52, 211, 153, 0.15);
   border: 1px solid rgba(52, 211, 153, 0.35);
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
+  font-size: var(--font-size-tag);
   font-weight: 700;
   color: rgba(52, 211, 153, 0.9);
   letter-spacing: 0.06em;
@@ -87,13 +87,13 @@
 }
 
 .fe-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
   color: var(--text-primary);
 }
 
 .fe-description {
-  font-size: 0.9rem;
+  font-size: var(--font-size-body);
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-md);
@@ -111,7 +111,7 @@
   background: rgba(139, 92, 246, 0.15);
   border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: var(--radius-full);
-  font-size: 0.78rem;
+  font-size: var(--font-size-tag);
   color: var(--text-secondary);
 }
 
@@ -121,6 +121,6 @@
 }
 
 .fe-btn {
-  font-size: 0.85rem;
-  padding: 0.5rem 1.2rem;
+  font-size: var(--font-size-button);
+  padding: 12px 24px;
 }

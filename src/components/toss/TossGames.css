@@ -1,0 +1,158 @@
+.toss-games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.toss-game-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.toss-game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(49, 130, 246, 0.12);
+}
+
+.toss-game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.toss-game-title {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  color: #191F28;
+}
+
+.toss-game-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.toss-game-badge--live {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.toss-game-badge--in-development {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.toss-game-desc {
+  font-size: 0.875rem;
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+.toss-game-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.toss-game-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.toss-mastodon-kicker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Mastodon featured card */
+.toss-mastodon-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.toss-mastodon-slider {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  background: #0f0f0f;
+}
+
+.toss-mastodon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.toss-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #191F28;
+  transition: background 0.15s;
+  z-index: 2;
+}
+
+.toss-slider-btn:hover {
+  background: #fff;
+}
+
+.toss-slider-btn--prev { left: 12px; }
+.toss-slider-btn--next { right: 12px; }
+
+.toss-slider-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.toss-slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.toss-slider-dot--active {
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .toss-mastodon-card {
+    grid-template-columns: 1fr;
+  }
+  .toss-mastodon-slider {
+    min-height: 240px;
+  }
+}

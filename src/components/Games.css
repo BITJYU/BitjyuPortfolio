@@ -90,7 +90,7 @@
 .proj-badge--be {
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
+  font-size: var(--font-size-tag);
   font-weight: 700;
   letter-spacing: 0.06em;
   flex-shrink: 0;
@@ -104,7 +104,7 @@
   color: var(--text-secondary);
   margin-top: calc(-1 * var(--space-lg));
   margin-bottom: var(--space-xl);
-  font-size: 0.95rem;
+  font-size: var(--font-size-section-copy);
 }
 
 .games-grid {
@@ -132,8 +132,8 @@
 }
 
 .game-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
   color: var(--text-primary);
 }
 
@@ -142,15 +142,15 @@
   flex-shrink: 0;
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: var(--font-size-tag);
   font-weight: 600;
   white-space: nowrap;
 }
 
 .game-badge--live {
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #4ade80;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  color: var(--accent-primary);
 }
 
 .game-badge--in-development {
@@ -160,7 +160,7 @@
 }
 
 .game-description {
-  font-size: 0.9rem;
+  font-size: var(--font-size-body);
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-md);
@@ -178,7 +178,7 @@
   background: rgba(139, 92, 246, 0.15);
   border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: var(--radius-full);
-  font-size: 0.78rem;
+  font-size: var(--font-size-tag);
   color: var(--text-secondary);
 }
 
@@ -195,7 +195,7 @@
 }
 
 .game-ai-icon {
-  font-size: 0.9rem;
+  font-size: var(--font-size-body);
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -204,7 +204,7 @@
 }
 
 .game-ai-text {
-  font-size: 0.82rem;
+  font-size: var(--font-size-small);
   font-weight: 500;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
@@ -220,6 +220,6 @@
 }
 
 .game-btn {
-  font-size: 0.85rem;
-  padding: 0.5rem 1.2rem;
+  font-size: var(--font-size-button);
+  padding: 12px 24px;
 }

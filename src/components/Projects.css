@@ -7,12 +7,12 @@
   color: var(--text-secondary);
   margin-top: calc(-1 * var(--space-lg));
   margin-bottom: var(--space-xl);
-  font-size: 0.95rem;
+  font-size: var(--font-size-section-copy);
 }
 
 .projects-sub-title {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: var(--font-size-section-copy);
+  font-weight: 800;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -62,7 +62,7 @@
 .proj-badge {
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
+  font-size: var(--font-size-tag);
   font-weight: 700;
   letter-spacing: 0.06em;
   flex-shrink: 0;
@@ -81,13 +81,13 @@
 }
 
 .proj-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
   color: var(--text-primary);
 }
 
 .proj-description {
-  font-size: 0.9rem;
+  font-size: var(--font-size-body);
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-md);
@@ -105,7 +105,7 @@
   background: rgba(139, 92, 246, 0.15);
   border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: var(--radius-full);
-  font-size: 0.78rem;
+  font-size: var(--font-size-tag);
   color: var(--text-secondary);
 }
 
@@ -116,8 +116,8 @@
 }
 
 .proj-btn {
-  font-size: 0.85rem;
-  padding: 0.5rem 1.2rem;
+  font-size: var(--font-size-button);
+  padding: 12px 24px;
 }
 
 /* Regular card grid */
